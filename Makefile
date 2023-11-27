@@ -25,7 +25,8 @@ activate:
 	. venv/bin/activate
 
 test:
-	echo "No tests yet"
+	cd grader && \
+	pytest -v -s tests/
 
 lint:
 	pre-commit run --all-files && \

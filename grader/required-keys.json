@@ -1,0 +1,22 @@
+{
+  "isBase64Encoded": false,
+  "statusCode": 200,
+  "body": {
+    "chat_memory": {
+      "messages": []
+    },
+    "output_key": null,
+    "input_key": null,
+    "return_messages": true,
+    "human_prefix": "Human",
+    "ai_prefix": "AI",
+    "memory_key": "chat_history",
+    "request_meta_data": {
+      "lambda": "lambda_langchain",
+      "model": "gpt-3.5-turbo",
+      "end_point": "ChatCompletion",
+      "temperature": 0.5,
+      "max_tokens": 256
+    }
+  }
+}
