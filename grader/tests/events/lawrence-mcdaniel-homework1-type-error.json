@@ -1,6 +1,6 @@
 {
   "isBase64Encoded": false,
-  "statusCode": 200,
+  "statusCode": "200",
   "body": {
     "chat_memory": {
       "messages": [

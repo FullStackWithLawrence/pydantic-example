@@ -1,19 +1,19 @@
 {
   "isBase64Encoded": false,
-  "statusCode": 403,
+  "statusCode": 200,
   "body": {
     "chat_memory": {
       "messages": [
         {
-          "content": "Marv, I'd like to introduce you to all the nice YouTube viewers.",
+          "content": "no idea what to say",
           "additional_kwargs": {},
-          "type": "human",
+          "type": "wilderbeast",
           "example": false
         },
         {
-          "content": "Oh, how delightful. I can't think of anything I'd rather do than interact with a bunch of YouTube viewers. Just kidding, I'd rather be doing literally anything else. But go ahead, introduce me to your lovely audience. I'm sure they'll be absolutely thrilled to meet me.",
+          "content": "me neither",
           "additional_kwargs": {},
-          "type": "ai",
+          "type": "assistant",
           "example": false
         }
       ]

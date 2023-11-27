@@ -39,7 +39,7 @@ class AutomatedGrader:
         if not isinstance(self.assignment.get("statusCode"), int):
             raise IncorrectResponseTypeError("The assignment's statusCode must be an integer.")
         if not self.assignment["statusCode"] == 200:
-            raise IncorrectResponseValueError("The assignment's statusCode must be 200.")
+            raise ResponseFailedError("The assignment's statusCode must be 200.")
         return True
 
     def validate_base64encoded(self):
@@ -114,24 +114,26 @@ class AutomatedGrader:
         self.validate_body()
         self.validate_metadata()
 
-    def grade_response(self, grade, message):
+    def grade_response(self, grade, message=None):
         """Create a grade dict from the assignment."""
+        message_type = message.__class__.__name__ if message else "Success"
+        message = str(message) if message else "Great job!"
         return {
             "grade": grade,
             "message": message,
+            "message_type": message_type,
         }
 
     def grade(self):
         """Grade the assignment."""
-        self.validate()
         try:
             self.validate()
         except InvalidResponseStructureError as e:
-            return self.grade_response(75, e.message)
+            return self.grade_response(75, e)
         except ResponseFailedError as e:
-            return self.grade_response(80, e.message)
+            return self.grade_response(80, e)
         except IncorrectResponseValueError as e:
-            return self.grade_response(85, e.message)
+            return self.grade_response(85, e)
         except IncorrectResponseTypeError as e:
-            return self.grade_response(90, e.message)
-        return self.grade_response(100, "Great job!")
+            return self.grade_response(90, e)
+        return self.grade_response(100)
