@@ -14,6 +14,7 @@ all: help
 analyze:
 	cloc . --exclude-ext=svg,json,zip --vcs=git
 init:
+	npm install && \
 	python3.11 -m venv venv && \
 	source venv/bin/activate && \
 	pip install --upgrade pip && \
