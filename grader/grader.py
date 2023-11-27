@@ -53,20 +53,32 @@ class AutomatedGrader:
         """Validate that the assignment's body is a dict with the correct keys."""
         body = self.assignment.get("body")
         if not isinstance(body, dict):
-            raise IncorrectResponseTypeError("The assignment's body must be a dict.")
+            body_type = type(body)
+            raise IncorrectResponseTypeError(f"The assignment's body must be a dict. Received {body_type}.")
         if not "chat_memory" in body:
-            raise InvalidResponseStructureError(f"The assignment's body must have a key named chat_memory. {body}")
+            raise InvalidResponseStructureError(
+                f"The assignment's body must have a key named chat_memory. body: {body}"
+            )
         if not "messages" in body["chat_memory"]:
-            raise InvalidResponseStructureError("The assignment's body.chat_memory must has a key named messages.")
+            raise InvalidResponseStructureError(
+                f"The assignment's body.chat_memory must has a key named messages. body: {body}"
+            )
         messages = body["chat_memory"]["messages"]
         if not isinstance(messages, list):
-            raise IncorrectResponseTypeError("The assignment's body.chat_memory.messages must be a list.")
+            messages_type = type(messages)
+            raise IncorrectResponseTypeError(
+                f"The assignment's body.chat_memory.messages must be a list. Received {messages_type}."
+            )
         if len(messages) < 2:
-            raise InvalidResponseStructureError("The messages list must contain at least two elements.")
+            raise InvalidResponseStructureError(
+                f"The messages list must contain at least two elements. messages: {messages}"
+            )
 
         for message in messages:
             if not isinstance(message, dict):
-                raise IncorrectResponseTypeError("All elements in the messages list must be dictionaries.")
+                raise IncorrectResponseTypeError(
+                    f"All elements in the messages list must be dictionaries. messages: {messages}"
+                )
 
         human_prompt = messages[0]
         ai_response = messages[1]
@@ -75,22 +87,22 @@ class AutomatedGrader:
         self.validate_keys(ai_response, AI_RESPONSE)
 
         if not human_prompt["type"] == "human":
-            raise IncorrectResponseValueError("The first message must be a human prompt.")
+            raise IncorrectResponseValueError(f"The first message must be a human prompt. first prompt: {human_prompt}")
         if not ai_response["type"] == "ai":
-            raise IncorrectResponseValueError("The second message must be an AI response.")
+            raise IncorrectResponseValueError(f"The second message must be an AI response. response: {ai_response}")
 
     def validate_metadata(self):
         """Validate that the assignment's metadata is a dict with the correct keys."""
         body = self.assignment.get("body")
         request_meta_data = body["request_meta_data"]
         if not isinstance(request_meta_data, dict):
-            raise InvalidResponseStructureError("The assignment must has a dict named request_meta_data.")
+            raise InvalidResponseStructureError(f"The assignment must has a dict named request_meta_data. body: {body}")
         if not request_meta_data["lambda"] == "lambda_langchain":
-            raise IncorrectResponseValueError("The request_meta_data.lambda must be lambda_langchain.")
+            raise IncorrectResponseValueError(f"The request_meta_data.lambda must be lambda_langchain. body: {body}")
         if not request_meta_data["model"] == "gpt-3.5-turbo":
-            raise IncorrectResponseValueError("The request_meta_data.model must be gpt-3.5-turbo.")
+            raise IncorrectResponseValueError(f"The request_meta_data.model must be gpt-3.5-turbo. body: {body}")
         if not request_meta_data["end_point"] == "ChatCompletion":
-            raise IncorrectResponseValueError("The request_meta_data.end_point must be ChatCompletion.")
+            raise IncorrectResponseValueError(f"The request_meta_data.end_point must be ChatCompletion. body: {body}")
 
     def validate(self):
         """Validate the assignment data structure."""

@@ -6,6 +6,9 @@ Test integrity of automated grader class methods.
 """
 import pytest  # pylint: disable=unused-import
 
+from ..exceptions import (  # IncorrectResponseTypeError,; IncorrectResponseValueError,; ResponseFailedError,
+    InvalidResponseStructureError,
+)
 from ..grader import AutomatedGrader
 from .init import get_event
 
@@ -14,7 +17,7 @@ from .init import get_event
 class TestGrader:
     """Test the OpenAI API via Langchain using the Lambda Layer, 'genai'."""
 
-    def test_basic_request(self):
+    def test_success(self):
         """Test a valid successful submission."""
         assignment = get_event("tests/events/lawrence-mcdaniel-homework1-correct.json")
         automated_grader = AutomatedGrader(assignment=assignment)
@@ -28,3 +31,10 @@ class TestGrader:
         assert "message" in grade, "The dictionary does not contain the key 'message'"
         assert isinstance(grade["message"], str), "The message is not a string"
         assert grade["message"] == "Great job!", "The message is not 'Great job!'"
+
+    def test_incorrect_response_type(self):
+        """Test an assignment with an incorrect response type."""
+        assignment = get_event("tests/events/lawrence-mcdaniel-homework1-incorrect-response-type.txt")
+        automated_grader = AutomatedGrader(assignment=assignment)
+        with pytest.raises(InvalidResponseStructureError):
+            automated_grader.grade()
