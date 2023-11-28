@@ -11,10 +11,6 @@ inputs:
     description: "The version of Python to use, such as 3.11.0"
     required: true
     type: string
-  github-token:
-    description: "The GitHub token to use for pushing changes to the repository"
-    required: true
-    type: string
 
 runs:
   using: "composite"
