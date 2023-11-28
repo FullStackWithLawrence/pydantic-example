@@ -136,3 +136,4 @@ jobs:
         uses: ./.github/actions/tests/pre-commit
         with:
           python-version: "${{ env.python-version}}"
+          github-token: ${{ secrets.PAT }}
