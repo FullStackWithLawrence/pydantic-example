@@ -14,6 +14,8 @@ on:
   workflow_dispatch:
   push:
     branches:
+      - alpha
+      - beta
       - next
       - next-major
 
