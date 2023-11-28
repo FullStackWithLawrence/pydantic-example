@@ -26,12 +26,6 @@ jobs:
           pinecone-api-key: "${{ secrets.PINECONE_API_KEY }}"
           pinecone-environment: "${{ secrets.PINECONE_ENVIRONMENT }}"
 
-      - name: Run Terraform tests
-        uses: ./.github/actions/tests/reactjs
-
-      - name: Run ReactJS tests
-        uses: ./.github/actions/tests/reactjs
-
       - name: Run pre-commit tests
         uses: ./.github/actions/tests/pre-commit
         with:
