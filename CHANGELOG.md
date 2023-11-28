@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/lpm0073/automatic-grader/compare/v1.1.6...v1.2.0) (2023-11-28)
+
+
+### Bug Fixes
+
+* wrap __version__.py value in double quotes so that it matches black rules ([88f7214](https://github.com/lpm0073/automatic-grader/commit/88f72149c5f97d9fe3ad6129f96580ae1db9f995))
+
+
+### Features
+
+* add a batch assignment grader. ([e7df088](https://github.com/lpm0073/automatic-grader/commit/e7df088c842e37f622aa4670f483448cdeb3495b))
+
 ## [1.1.6](https://github.com/lpm0073/automatic-grader/compare/v1.1.5...v1.1.6) (2023-11-28)
 
 
