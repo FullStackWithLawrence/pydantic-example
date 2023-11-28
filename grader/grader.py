@@ -22,7 +22,7 @@ class AutomatedGrader:
 
     def __init__(self, assignment):
         self.assignment = assignment
-        with open(REQUIRED_KEYS_SPEC, "r", encoding="utf-8") as f:  # pylint: disable=invalid-name
+        with open("data/" + REQUIRED_KEYS_SPEC, "r", encoding="utf-8") as f:  # pylint: disable=invalid-name
             self.required_keys = json.load(f)
 
     def validate_keys(self, subject, control):
@@ -31,26 +31,46 @@ class AutomatedGrader:
         required_keys = set(control.keys())
 
         if not required_keys.issubset(assignment_keys):
-            raise InvalidResponseStructureError("The assignment is missing one or more required keys.")
+            missing_keys = required_keys.difference(assignment_keys)
+            raise InvalidResponseStructureError(
+                f"The assignment is missing one or more required keys. missing: {missing_keys}"
+            )
         return True
 
     def validate_statuscode(self):
         """Validate that the assignment's statusCode is 200."""
+        if "statusCode" not in self.assignment:
+            raise InvalidResponseStructureError(f"The assignment must have a statusCode. assignment: {self.assignment}")
         if not isinstance(self.assignment.get("statusCode"), int):
-            raise IncorrectResponseTypeError("The assignment's statusCode must be an integer.")
-        if not self.assignment["statusCode"] == 200:
-            raise ResponseFailedError("The assignment's statusCode must be 200.")
+            status_code_type = type(self.assignment.get("statusCode"))
+            raise IncorrectResponseTypeError(
+                f"The assignment's statusCode must be an integer. received: {status_code_type}"
+            )
+        status_code = self.assignment["statusCode"]
+        if not status_code == 200:
+            raise ResponseFailedError(f"The assignment's statusCode must be 200. received: {status_code}")
         return True
 
     def validate_base64encoded(self):
         """Validate that the assignment's isBase64Encoded is False."""
-        if not isinstance(self.assignment.get("isBase64Encoded"), bool):
-            raise IncorrectResponseTypeError("The assignment's base64Encoded must be a boolean.")
+        if "isBase64Encoded" not in self.assignment:
+            raise InvalidResponseStructureError(
+                f"The assignment must have a isBase64Encoded. assignment: {self.assignment}"
+            )
+        is_base64_encoded = self.assignment.get("isBase64Encoded")
+        if not isinstance(is_base64_encoded, bool):
+            is_base64_encoded_type = type(is_base64_encoded)
+            raise IncorrectResponseTypeError(
+                f"The assignment's base64Encoded must be a boolean. received: {is_base64_encoded_type}"
+            )
         if self.assignment["isBase64Encoded"]:
             raise IncorrectResponseValueError("The assignment's isBase64Encoded must be False.")
 
     def validate_body(self):
         """Validate that the assignment's body is a dict with the correct keys."""
+        if "body" not in self.assignment:
+            raise InvalidResponseStructureError(f"The assignment must have a body. assignment: {self.assignment}")
+
         body = self.assignment.get("body")
         if not isinstance(body, dict):
             body_type = type(body)
@@ -76,7 +96,7 @@ class AutomatedGrader:
 
         for message in messages:
             if not isinstance(message, dict):
-                raise IncorrectResponseTypeError(
+                raise InvalidResponseStructureError(
                     f"All elements in the messages list must be dictionaries. messages: {messages}"
                 )
 
@@ -96,12 +116,28 @@ class AutomatedGrader:
         body = self.assignment.get("body")
         request_meta_data = body["request_meta_data"]
         if not isinstance(request_meta_data, dict):
-            raise InvalidResponseStructureError(f"The assignment must has a dict named request_meta_data. body: {body}")
-        if not request_meta_data["lambda"] == "lambda_langchain":
+            meta_data_type = type(request_meta_data)
+            raise InvalidResponseStructureError(
+                f"The assignment must has a dict named request_meta_data. received: {meta_data_type}"
+            )
+        if request_meta_data.get("lambda") is None:
+            raise InvalidResponseStructureError(
+                f"The request_meta_data key lambda_langchain must exist. request_meta_data: {request_meta_data}"
+            )
+        if request_meta_data.get("model") is None:
+            raise InvalidResponseStructureError(
+                f"The request_meta_data key model must exist. request_meta_data: {request_meta_data}"
+            )
+        if request_meta_data.get("end_point") is None:
+            raise InvalidResponseStructureError(
+                f"The request_meta_data end_point must exist. request_meta_data: {request_meta_data}"
+            )
+
+        if not request_meta_data.get("lambda") == "lambda_langchain":
             raise IncorrectResponseValueError(f"The request_meta_data.lambda must be lambda_langchain. body: {body}")
-        if not request_meta_data["model"] == "gpt-3.5-turbo":
+        if not request_meta_data.get("model") == "gpt-3.5-turbo":
             raise IncorrectResponseValueError(f"The request_meta_data.model must be gpt-3.5-turbo. body: {body}")
-        if not request_meta_data["end_point"] == "ChatCompletion":
+        if not request_meta_data.get("end_point") == "ChatCompletion":
             raise IncorrectResponseValueError(f"The request_meta_data.end_point must be ChatCompletion. body: {body}")
 
     def validate(self):
@@ -129,7 +165,7 @@ class AutomatedGrader:
         try:
             self.validate()
         except InvalidResponseStructureError as e:
-            return self.grade_response(75, e)
+            return self.grade_response(70, e)
         except ResponseFailedError as e:
             return self.grade_response(80, e)
         except IncorrectResponseValueError as e:

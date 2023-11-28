@@ -25,15 +25,15 @@ activate:
 	. venv/bin/activate
 
 test:
-	cd grader && \
-	pytest -v -s tests/
+	cd grader && pytest -v -s tests/
+	python -m setup_test
 
 lint:
 	pre-commit run --all-files && \
 	black .
 
 clean:
-	rm -rf venv
+	rm -rf venv && rm -rf node_modules
 
 
 ######################
