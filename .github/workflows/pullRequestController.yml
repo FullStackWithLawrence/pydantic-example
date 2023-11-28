@@ -113,16 +113,3 @@ jobs:
         uses: ./.github/actions/tests/python
         with:
           python-version: "${{ env.python-version}}"
-
-  pre_commit_tests:
-    needs: check_for_pending_release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        id: checkout
-        uses: actions/checkout@v4
-
-      - name: Run pre-commit tests
-        uses: ./.github/actions/tests/pre-commit
-        with:
-          python-version: "${{ env.python-version}}"

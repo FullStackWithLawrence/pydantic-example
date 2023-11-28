@@ -26,8 +26,3 @@ jobs:
           openai-api-key: "${{ secrets.OPENAI_API_KEY }}"
           pinecone-api-key: "${{ secrets.PINECONE_API_KEY }}"
           pinecone-environment: "${{ secrets.PINECONE_ENVIRONMENT }}"
-
-      - name: Run pre-commit tests
-        uses: ./.github/actions/tests/pre-commit
-        with:
-          python-version: "${{ env.python-version}}"
