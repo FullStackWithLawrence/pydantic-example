@@ -14,6 +14,10 @@ make activate
 ## Usage
 
 ```console
+# command-line help
+python3 -m grader.batch -h
+
+# example usage
 python3 -m grader.batch 'path/to/homework/json/files/'
 ```
 
