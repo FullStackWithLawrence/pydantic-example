@@ -21,6 +21,7 @@ class TestGrader:
         grade = automated_grader.grade()
 
         assert isinstance(grade, dict), "The grade is not a dictionary"
+        assert grade["message_type"] == "Success"
         assert "grade" in grade, "The dictionary does not contain the key 'grade'"
         assert isinstance(grade["grade"], int), "The grade is not an int"
         assert grade["grade"] == 100, "The grade is not 100"
@@ -36,6 +37,7 @@ class TestGrader:
         grade = automated_grader.grade()
 
         assert isinstance(grade, dict), "The grade is not a dictionary"
+        assert grade["message_type"] == "Success"
         assert "grade" in grade, "The dictionary does not contain the key 'grade'"
         assert isinstance(grade["grade"], int), "The grade is not an int"
         assert grade["grade"] == 100, "The grade is not 100"
@@ -44,6 +46,16 @@ class TestGrader:
         assert isinstance(grade["message"], str), "The message is not a string"
         assert grade["message"] == "Great job!", "The message is not 'Great job!'"
 
+    def test_bad_data(self):
+        """Test an assignment with bad data."""
+        assignment = get_event("tests/events/bad-data.txt")
+        automated_grader = AutomatedGrader(assignment=assignment)
+        grade = automated_grader.grade()
+        print(grade)
+
+        assert grade["grade"] == 70, "The grade is not 70"
+        assert grade["message_type"] == "InvalidResponseStructureError"
+
     def test_incorrect_response_type(self):
         """Test an assignment with an incorrect response type."""
         assignment = get_event("tests/events/lawrence-mcdaniel-homework1-incorrect-response-type.txt")
@@ -51,7 +63,7 @@ class TestGrader:
         grade = automated_grader.grade()
         print(grade)
 
-        assert grade["grade"] == 75, "The grade is not 75"
+        assert grade["grade"] == 70, "The grade is not 70"
         assert grade["message_type"] == "InvalidResponseStructureError"
 
     def test_incorrect_response_statuscode(self):
@@ -80,3 +92,39 @@ class TestGrader:
         grade = automated_grader.grade()
         assert grade["message_type"] == "IncorrectResponseTypeError"
         assert grade["grade"] == 90, "The grade is not 85"
+
+    def test_bad_message_01(self):
+        """Test an assignment with an incorrect message."""
+        assignment = get_event("tests/events/lawrence-mcdaniel-homework1-bad-message-1.json")
+        automated_grader = AutomatedGrader(assignment=assignment)
+
+        grade = automated_grader.grade()
+        assert grade["message_type"] == "InvalidResponseStructureError"
+        assert grade["grade"] == 70, "The grade is not 70"
+
+    def test_bad_message_02(self):
+        """Test an assignment with an incorrect message."""
+        assignment = get_event("tests/events/lawrence-mcdaniel-homework1-bad-message-2.json")
+        automated_grader = AutomatedGrader(assignment=assignment)
+
+        grade = automated_grader.grade()
+        assert grade["message_type"] == "InvalidResponseStructureError"
+        assert grade["grade"] == 70, "The grade is not 70"
+
+    def test_bad_message_03(self):
+        """Test an assignment with an incorrect message."""
+        assignment = get_event("tests/events/lawrence-mcdaniel-homework1-bad-message-3.json")
+        automated_grader = AutomatedGrader(assignment=assignment)
+
+        grade = automated_grader.grade()
+        assert grade["message_type"] == "InvalidResponseStructureError"
+        assert grade["grade"] == 70, "The grade is not 70"
+
+    def test_bad_message_04(self):
+        """Test an assignment with an incorrect message."""
+        assignment = get_event("tests/events/lawrence-mcdaniel-homework1-bad-message-4.json")
+        automated_grader = AutomatedGrader(assignment=assignment)
+
+        grade = automated_grader.grade()
+        assert grade["message_type"] == "InvalidResponseStructureError"
+        assert grade["grade"] == 70, "The grade is not 70"
