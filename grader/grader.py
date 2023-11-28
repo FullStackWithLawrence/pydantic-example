@@ -57,7 +57,8 @@ class Grade(BaseModel):
         return self
 
     @field_validator("message_type")
-    def message_type_is_valid(self, message_type):
+    @classmethod
+    def message_type_is_valid(cls, message_type):
         """Validate that the message_type is valid"""
         if message_type not in VALID_MESSAGE_TYPES:
             raise ValueError(f"message_type must be one of {VALID_MESSAGE_TYPES}")
