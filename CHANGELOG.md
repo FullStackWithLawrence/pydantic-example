@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/lpm0073/automatic-grader/compare/v1.1.5...v1.1.6) (2023-11-28)
+
+
+### Bug Fixes
+
+* ensure that __version__.py construction matches that of dev ([af9aa7f](https://github.com/lpm0073/automatic-grader/commit/af9aa7faf5e6782cae0ec914dc820b2d0779fb11))
+
 ## [1.1.5](https://github.com/lpm0073/automatic-grader/compare/v1.1.4...v1.1.5) (2023-11-28)
 
 
