@@ -136,7 +136,7 @@ class AutomatedGrader:
         try:
             self.validate()
         except InvalidResponseStructureError as e:
-            return self.grade_response(75, e)
+            return self.grade_response(70, e)
         except ResponseFailedError as e:
             return self.grade_response(80, e)
         except IncorrectResponseValueError as e:
