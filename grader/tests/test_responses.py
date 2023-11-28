@@ -23,7 +23,7 @@ class TestGrader:
         assert isinstance(grade, dict), "The grade is not a dictionary"
         assert grade["message_type"] == "Success"
         assert "grade" in grade, "The dictionary does not contain the key 'grade'"
-        assert isinstance(grade["grade"], int), "The grade is not an int"
+        assert isinstance(grade["grade"], float), "The grade is not an float"
         assert grade["grade"] == 100, "The grade is not 100"
 
         assert "message" in grade, "The dictionary does not contain the key 'message'"
@@ -39,7 +39,7 @@ class TestGrader:
         assert isinstance(grade, dict), "The grade is not a dictionary"
         assert grade["message_type"] == "Success"
         assert "grade" in grade, "The dictionary does not contain the key 'grade'"
-        assert isinstance(grade["grade"], int), "The grade is not an int"
+        assert isinstance(grade["grade"], float), "The grade is not an float"
         assert grade["grade"] == 100, "The grade is not 100"
 
         assert "message" in grade, "The dictionary does not contain the key 'message'"
