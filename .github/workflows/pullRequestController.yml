@@ -46,6 +46,7 @@ on:
     paths:
       - "**.py"
       - "**.requirements.txt"
+      - "**.package.json"
       - "./grader/**"
 
 env:
