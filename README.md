@@ -14,7 +14,22 @@ make activate
 ## Usage
 
 ```console
+# command-line help
+python3 -m grader.batch -h
+
+# example usage
 python3 -m grader.batch 'path/to/homework/json/files/'
+```
+
+## Rubric
+
+Rubric values are expressed as floats between 0 and 1.00, and can be overridden with environment variables.
+
+```console
+AG_INCORRECT_RESPONSE_TYPE_PENALTY_PCT=0.10
+AG_INCORRECT_RESPONSE_VALUE_PENALTY_PCT=0.15
+AG_RESPONSE_FAILED_PENALTY_PCT=0.20
+AG_INVALID_RESPONSE_STRUCTURE_PENALTY_PCT=0.30
 ```
 
 ### Expected output
