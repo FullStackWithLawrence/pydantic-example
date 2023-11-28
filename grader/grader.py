@@ -5,6 +5,7 @@ import json
 import os
 
 from .exceptions import (
+    AGException,
     IncorrectResponseTypeError,
     IncorrectResponseValueError,
     InvalidResponseStructureError,
@@ -24,10 +25,21 @@ AI_RESPONSE = {"content": "a response from the AI", "additional_kwargs": {}, "ty
 class AutomatedGrader:
     """Grade a submission against an assignment."""
 
-    def __init__(self, assignment):
-        self.assignment = assignment
+    def __init__(self, assignment, potential_points=100):
+        self._assignment = assignment
+        self._potential_points = potential_points
         with open(REQUIRED_KEYS_PATH, "r", encoding="utf-8") as f:  # pylint: disable=invalid-name
             self.required_keys = json.load(f)
+
+    @property
+    def assignment(self):
+        """Return the assignment."""
+        return self._assignment
+
+    @property
+    def potential_points(self):
+        """Return the potential points for the assignment."""
+        return self._potential_points
 
     def validate_keys(self, subject, control):
         """Validate that the subject has all the keys in the control dict."""
@@ -154,8 +166,9 @@ class AutomatedGrader:
         self.validate_body()
         self.validate_metadata()
 
-    def grade_response(self, grade, message=None):
+    def grade_response(self, message: AGException = None):
         """Create a grade dict from the assignment."""
+        grade = self.potential_points * (1 - (message.penalty_pct if message else 0))
         message_type = message.__class__.__name__ if message else "Success"
         message = str(message) if message else "Great job!"
         return {
@@ -169,11 +182,11 @@ class AutomatedGrader:
         try:
             self.validate()
         except InvalidResponseStructureError as e:
-            return self.grade_response(70, e)
+            return self.grade_response(e)
         except ResponseFailedError as e:
-            return self.grade_response(80, e)
+            return self.grade_response(e)
         except IncorrectResponseValueError as e:
-            return self.grade_response(85, e)
+            return self.grade_response(e)
         except IncorrectResponseTypeError as e:
-            return self.grade_response(90, e)
-        return self.grade_response(100)
+            return self.grade_response(e)
+        return self.grade_response()
