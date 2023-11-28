@@ -101,19 +101,6 @@ runs:
       run: |
         npx prettier --write --log-level silent .
 
-    - name: Lint commit and push
-      id: lint-commit-and-push
-      shell: bash
-      run: |
-        git pull
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add .
-        git commit -m "chore: [gh] lint w black / prettier [skip ci]"
-        git push https://${{ env.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:${{ github.ref }}
-      env:
-        GITHUB_TOKEN: ${{ inputs.github-token }}
-
     # see: https://pre-commit.ci/lite.html
     - name: pre-commit
       id: pre-commit

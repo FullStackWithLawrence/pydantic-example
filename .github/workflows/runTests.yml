@@ -6,6 +6,13 @@ name: Run all tests
 
 on:
   workflow_dispatch:
+  push:
+    branches-ignore:
+      - main
+  pull_request:
+    branches-ignore:
+      - main
+
 env:
   python-version: "3.11"
 
