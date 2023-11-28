@@ -1,9 +1,17 @@
-## [1.1.2](https://github.com/lpm0073/automatic-grader/compare/v1.1.1...v1.1.2) (2023-11-28)
+## [1.1.3](https://github.com/lpm0073/automatic-grader/compare/v1.1.2...v1.1.3) (2023-11-28)
 
 
 ### Bug Fixes
 
-* add shell ([0f03b26](https://github.com/lpm0073/automatic-grader/commit/0f03b2655cbf4ffd32d65cf1ac45773bd05d2cb1))
+* add shell ([3604be4](https://github.com/lpm0073/automatic-grader/commit/3604be4f70eb709993fe4f91d8edda87642ad005))
+* git pull before push ([fad074a](https://github.com/lpm0073/automatic-grader/commit/fad074a9b799efdf3869e98baceb724c54ce83c0))
+* run prettier with npx ([a46356e](https://github.com/lpm0073/automatic-grader/commit/a46356ef9bd3378114a1036dcc8c6eff8e016597))
+
+## [1.1.2](https://github.com/lpm0073/automatic-grader/compare/v1.1.1...v1.1.2) (2023-11-28)
+
+### Bug Fixes
+
+- add shell ([0f03b26](https://github.com/lpm0073/automatic-grader/commit/0f03b2655cbf4ffd32d65cf1ac45773bd05d2cb1))
 
 ## [1.1.1](https://github.com/lpm0073/automatic-grader/compare/v1.1.0...v1.1.1) (2023-11-28)
 

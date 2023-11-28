@@ -6,6 +6,7 @@ name: Run all tests
 
 on:
   workflow_dispatch:
+
 env:
   python-version: "3.11"
 
@@ -30,4 +31,3 @@ jobs:
         uses: ./.github/actions/tests/pre-commit
         with:
           python-version: "${{ env.python-version}}"
-          github-token: ${{ secrets.PAT }}

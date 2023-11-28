@@ -11,10 +11,6 @@ inputs:
     description: "The version of Python to use, such as 3.11.0"
     required: true
     type: string
-  github-token:
-    description: "The GitHub token to use for pushing changes to the repository"
-    required: true
-    type: string
 
 runs:
   using: "composite"
@@ -100,19 +96,6 @@ runs:
       shell: bash
       run: |
         npx prettier --write --log-level silent .
-
-    - name: Lint commit and push
-      id: lint-commit-and-push
-      shell: bash
-      run: |
-        git pull
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add .
-        git commit -m "chore: [gh] lint w black / prettier [skip ci]"
-        git push https://${{ env.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:${{ github.ref }}
-      env:
-        GITHUB_TOKEN: ${{ inputs.github-token }}
 
     # see: https://pre-commit.ci/lite.html
     - name: pre-commit
