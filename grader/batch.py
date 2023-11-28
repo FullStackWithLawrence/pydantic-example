@@ -8,7 +8,7 @@ import os
 from .grader import AutomatedGrader
 
 
-def main(filepath: str = None, output_folder: str = "out"):
+def main(filepath: str = None, output_folder: str = "out", potential_points: int = 100):
     """Grade an assignment."""
     graded = 0
     if filepath is None:
@@ -26,7 +26,7 @@ def main(filepath: str = None, output_folder: str = "out"):
             except json.JSONDecodeError:
                 print(f"warning: invalid JSON in assignment_filename: {assignment_filename}")
                 assignment = f.read()
-        grader = AutomatedGrader(assignment)
+        grader = AutomatedGrader(assignment, potential_points=potential_points)
         grade = grader.grade()
         with open(
             os.path.join(OUTPUT_FILE_PATH, f"{os.path.basename(assignment_filename)}"), "w", encoding="utf-8"
@@ -47,7 +47,14 @@ if __name__ == "__main__":
         default="out",
         help="The name of the subfolder where graded assignments will be saved.",
     )
+    parser.add_argument(
+        "potential_points",
+        type=int,
+        nargs="?",  # optional
+        default=100,
+        help="The aggregate point potential for the assignment.",
+    )
 
     args = parser.parse_args()
 
-    main(args.filepath, args.output_folder)
+    main(args.filepath, args.output_folder, args.potential_points)
