@@ -22,7 +22,7 @@ class AutomatedGrader:
 
     def __init__(self, assignment):
         self.assignment = assignment
-        with open(REQUIRED_KEYS_SPEC, "r", encoding="utf-8") as f:  # pylint: disable=invalid-name
+        with open("data/" + REQUIRED_KEYS_SPEC, "r", encoding="utf-8") as f:  # pylint: disable=invalid-name
             self.required_keys = json.load(f)
 
     def validate_keys(self, subject, control):
@@ -31,15 +31,19 @@ class AutomatedGrader:
         required_keys = set(control.keys())
 
         if not required_keys.issubset(assignment_keys):
-            raise InvalidResponseStructureError("The assignment is missing one or more required keys.")
+            missing_keys = required_keys.difference(assignment_keys)
+            raise InvalidResponseStructureError(
+                f"The assignment is missing one or more required keys. missing: {missing_keys}"
+            )
         return True
 
     def validate_statuscode(self):
         """Validate that the assignment's statusCode is 200."""
         if not isinstance(self.assignment.get("statusCode"), int):
             raise IncorrectResponseTypeError("The assignment's statusCode must be an integer.")
-        if not self.assignment["statusCode"] == 200:
-            raise ResponseFailedError("The assignment's statusCode must be 200.")
+        status_code = self.assignment["statusCode"]
+        if not status_code == 200:
+            raise ResponseFailedError(f"The assignment's statusCode must be 200. received: {status_code}")
         return True
 
     def validate_base64encoded(self):
@@ -96,7 +100,10 @@ class AutomatedGrader:
         body = self.assignment.get("body")
         request_meta_data = body["request_meta_data"]
         if not isinstance(request_meta_data, dict):
-            raise InvalidResponseStructureError(f"The assignment must has a dict named request_meta_data. body: {body}")
+            meta_data_type = type(request_meta_data)
+            raise InvalidResponseStructureError(
+                f"The assignment must has a dict named request_meta_data. received: {meta_data_type}"
+            )
         if not request_meta_data["lambda"] == "lambda_langchain":
             raise IncorrectResponseValueError(f"The request_meta_data.lambda must be lambda_langchain. body: {body}")
         if not request_meta_data["model"] == "gpt-3.5-turbo":
