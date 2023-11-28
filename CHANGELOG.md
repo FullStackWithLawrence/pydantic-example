@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/lpm0073/automatic-grader/compare/v1.1.4...v1.1.5) (2023-11-28)
+
+
+### Bug Fixes
+
+* remove pre-commit tests from ci ([22ffa1b](https://github.com/lpm0073/automatic-grader/commit/22ffa1b1924a8da8dd725dff04496b0ede7e1f44))
+
 ## [1.1.4](https://github.com/lpm0073/automatic-grader/compare/v1.1.3...v1.1.4) (2023-11-28)
 
 
