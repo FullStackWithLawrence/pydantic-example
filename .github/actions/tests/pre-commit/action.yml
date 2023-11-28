@@ -99,7 +99,7 @@ runs:
     - name: Run Prettier
       shell: bash
       run: |
-        prettier --write .
+        npx prettier --write --log-level silent .
 
     - name: Lint commit and push
       id: lint-commit-and-push
