@@ -2,6 +2,7 @@
 """Provide a class for grading a submission against an assignment.""" ""
 
 import json
+import os
 
 from .exceptions import (
     IncorrectResponseTypeError,
@@ -11,7 +12,10 @@ from .exceptions import (
 )
 
 
+HERE = os.path.abspath(os.path.dirname(__file__))
 REQUIRED_KEYS_SPEC = "required-keys.json"
+REQUIRED_KEYS_PATH = os.path.join(HERE, "data", REQUIRED_KEYS_SPEC)
+
 HUMAN_PROMPT = {"content": "a prompt from a human", "additional_kwargs": {}, "type": "human", "example": False}
 AI_RESPONSE = {"content": "a response from the AI", "additional_kwargs": {}, "type": "ai", "example": False}
 
@@ -22,7 +26,7 @@ class AutomatedGrader:
 
     def __init__(self, assignment):
         self.assignment = assignment
-        with open("data/" + REQUIRED_KEYS_SPEC, "r", encoding="utf-8") as f:  # pylint: disable=invalid-name
+        with open(REQUIRED_KEYS_PATH, "r", encoding="utf-8") as f:  # pylint: disable=invalid-name
             self.required_keys = json.load(f)
 
     def validate_keys(self, subject, control):

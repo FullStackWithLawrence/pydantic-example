@@ -16,7 +16,7 @@ class TestGrader:
 
     def test_success(self):
         """Test a valid successful submission."""
-        assignment = get_event("tests/events/lawrence-mcdaniel-homework1-correct.json")
+        assignment = get_event("tests/events/correct.json")
         automated_grader = AutomatedGrader(assignment=assignment)
         grade = automated_grader.grade()
 
@@ -32,7 +32,7 @@ class TestGrader:
 
     def test_success_verbose(self):
         """Test a valid successful submission."""
-        assignment = get_event("tests/events/lawrence-mcdaniel-homework1-correct-verbose.json")
+        assignment = get_event("tests/events/correct-verbose.json")
         automated_grader = AutomatedGrader(assignment=assignment)
         grade = automated_grader.grade()
 
@@ -58,7 +58,7 @@ class TestGrader:
 
     def test_incorrect_response_type(self):
         """Test an assignment with an incorrect response type."""
-        assignment = get_event("tests/events/lawrence-mcdaniel-homework1-incorrect-response-type.txt")
+        assignment = get_event("tests/events/incorrect-response-type.txt")
         automated_grader = AutomatedGrader(assignment=assignment)
         grade = automated_grader.grade()
         print(grade)
@@ -68,7 +68,7 @@ class TestGrader:
 
     def test_incorrect_response_statuscode(self):
         """Test an assignment with an incorrect response status code."""
-        assignment = get_event("tests/events/lawrence-mcdaniel-homework1-incorrect-response-status.json")
+        assignment = get_event("tests/events/incorrect-response-status.json")
         automated_grader = AutomatedGrader(assignment=assignment)
 
         grade = automated_grader.grade()
@@ -77,7 +77,7 @@ class TestGrader:
 
     def test_incorrect_messages(self):
         """Test an assignment with an incorrect message."""
-        assignment = get_event("tests/events/lawrence-mcdaniel-homework1-wrong-messages.json")
+        assignment = get_event("tests/events/wrong-messages.json")
         automated_grader = AutomatedGrader(assignment=assignment)
 
         grade = automated_grader.grade()
@@ -86,7 +86,7 @@ class TestGrader:
 
     def test_incorrect_data_type(self):
         """Test an assignment with an incorrect data type."""
-        assignment = get_event("tests/events/lawrence-mcdaniel-homework1-type-error.json")
+        assignment = get_event("tests/events/type-error.json")
         automated_grader = AutomatedGrader(assignment=assignment)
 
         grade = automated_grader.grade()
@@ -95,7 +95,7 @@ class TestGrader:
 
     def test_bad_message_01(self):
         """Test an assignment with an incorrect message."""
-        assignment = get_event("tests/events/lawrence-mcdaniel-homework1-bad-message-1.json")
+        assignment = get_event("tests/events/bad-message-1.json")
         automated_grader = AutomatedGrader(assignment=assignment)
 
         grade = automated_grader.grade()
@@ -104,7 +104,7 @@ class TestGrader:
 
     def test_bad_message_02(self):
         """Test an assignment with an incorrect message."""
-        assignment = get_event("tests/events/lawrence-mcdaniel-homework1-bad-message-2.json")
+        assignment = get_event("tests/events/bad-message-2.json")
         automated_grader = AutomatedGrader(assignment=assignment)
 
         grade = automated_grader.grade()
@@ -113,7 +113,7 @@ class TestGrader:
 
     def test_bad_message_03(self):
         """Test an assignment with an incorrect message."""
-        assignment = get_event("tests/events/lawrence-mcdaniel-homework1-bad-message-3.json")
+        assignment = get_event("tests/events/bad-message-3.json")
         automated_grader = AutomatedGrader(assignment=assignment)
 
         grade = automated_grader.grade()
@@ -122,7 +122,7 @@ class TestGrader:
 
     def test_bad_message_04(self):
         """Test an assignment with an incorrect message."""
-        assignment = get_event("tests/events/lawrence-mcdaniel-homework1-bad-message-4.json")
+        assignment = get_event("tests/events/bad-message-4.json")
         automated_grader = AutomatedGrader(assignment=assignment)
 
         grade = automated_grader.grade()
