@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/lpm0073/automatic-grader/compare/v1.1.1...v1.1.2) (2023-11-28)
+
+
+### Bug Fixes
+
+* add shell ([0f03b26](https://github.com/lpm0073/automatic-grader/commit/0f03b2655cbf4ffd32d65cf1ac45773bd05d2cb1))
+
 ## [1.1.1](https://github.com/lpm0073/automatic-grader/compare/v1.1.0...v1.1.1) (2023-11-28)
 
 
