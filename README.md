@@ -23,6 +23,7 @@ python3 -m grader.batch 'path/to/homework/json/files/'
 % done! Graded 10 assignments. Output files are in path/to/homework/json/files/out
 ```
 
+<!-- prettier-ignore -->
 ```json
 {
   "grade": 100,
@@ -31,35 +32,43 @@ python3 -m grader.batch 'path/to/homework/json/files/'
 }
 ```
 
-````json
+<!-- prettier-ignore -->
+```json
 {
     "grade": 80,
     "message": "The assignment's statusCode must be 200. received: 403",
     "message_type": "ResponseFailedError"
-}```
+}
+```
 
+<!-- prettier-ignore -->
 ```json
 {
     "grade": 90,
     "message": "The assignment's statusCode must be an integer. received: <class 'str'>",
     "message_type": "IncorrectResponseTypeError"
-}```
+}
+```
 
+<!-- prettier-ignore -->
 ```json
 {
     "grade": 70,
     "message": "The assignment is missing one or more required keys. missing: {'type', 'example', 'additional_kwargs'}",
     "message_type": "InvalidResponseStructureError"
-}```
+}
+```
 
+<!-- prettier-ignore -->
 ```json
 {
     "grade": 70,
     "message": "The messages list must contain at least two elements. messages: [{'content': \"Oh, how delightful. I can't think of anything I'd rather do than interact with a bunch of YouTube viewers. Just kidding, I'd rather be doing literally anything else. But go ahead, introduce me to your lovely audience. I'm sure they'll be absolutely thrilled to meet me.\", 'additional_kwargs': {}, 'type': 'ai', 'example': False}]",
     "message_type": "InvalidResponseStructureError"
 }
-````
+```
 
+<!-- prettier-ignore -->
 ```json
 {
   "grade": 70,
@@ -68,6 +77,7 @@ python3 -m grader.batch 'path/to/homework/json/files/'
 }
 ```
 
+<!-- prettier-ignore -->
 ```json
 {
   "grade": 70,
