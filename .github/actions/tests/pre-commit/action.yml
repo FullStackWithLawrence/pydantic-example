@@ -102,6 +102,7 @@ runs:
 
     - name: Lint commit and push
       id: lint-commit-and-push
+      shell: bash
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"

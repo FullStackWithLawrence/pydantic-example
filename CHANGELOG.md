@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/lpm0073/automatic-grader/compare/v1.1.0...v1.1.1) (2023-11-28)
+
+
+### Bug Fixes
+
+* add stronger type checking, and existence of dict keys, and verbose error output ([1ee48c5](https://github.com/lpm0073/automatic-grader/commit/1ee48c511cd1030bbf7201f7d58f28e25fea7463))
+* remove terraform and reactjs tests ([a512a3a](https://github.com/lpm0073/automatic-grader/commit/a512a3a64d6f7fb9adee8464de10d35bc7ea6ead))
+* switch from pre-commit-ci to pre-commit command line in bash ([3699ef2](https://github.com/lpm0073/automatic-grader/commit/3699ef27d0481c7284a6e9c1bf9715347258d7d4))
+
 # [1.1.0](https://github.com/lpm0073/automatic-grader/compare/v1.0.1...v1.1.0) (2023-11-27)
 
 
