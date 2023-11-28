@@ -25,8 +25,8 @@ activate:
 	. venv/bin/activate
 
 test:
-	cd grader && \
-	pytest -v -s tests/
+	cd grader && pytest -v -s tests/
+	cd grader && python -m setup_test
 
 lint:
 	pre-commit run --all-files && \
