@@ -37,6 +37,7 @@ runs:
         node-version: "20.9.0"
 
     - name: Install npm dev dependencies
+      shell: bash
       run: npm install
 
     - name: Check for pre-commit in requirements
