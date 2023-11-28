@@ -77,6 +77,7 @@ jobs:
         if: env.VERSION_CHANGED == 'true'
         id: update_version
         run: |
+          echo "# -*- coding: utf-8 -*-" > __version__.py
           echo "__version__ = '${{ env.NEXT_VERSION }}'" > __version__.py
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
