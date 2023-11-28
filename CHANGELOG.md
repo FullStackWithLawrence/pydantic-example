@@ -1,3 +1,11 @@
+## [1.1.4](https://github.com/lpm0073/automatic-grader/compare/v1.1.3...v1.1.4) (2023-11-28)
+
+
+### Bug Fixes
+
+* add dummy variables for aws credentials ([1ebf9ce](https://github.com/lpm0073/automatic-grader/commit/1ebf9cecd3577053356271d0289a335f1e9dd39c))
+* create the file, append to the file ([7f2b4d3](https://github.com/lpm0073/automatic-grader/commit/7f2b4d3e581903df65727a97a2d5b67d296a3268))
+
 ## [1.1.3](https://github.com/lpm0073/automatic-grader/compare/v1.1.2...v1.1.3) (2023-11-28)
 
 
