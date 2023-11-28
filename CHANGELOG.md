@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/lpm0073/automatic-grader/compare/v1.2.0...v1.3.0) (2023-11-28)
+
+
+### Features
+
+* add configurable rubric ([fdc3da8](https://github.com/lpm0073/automatic-grader/commit/fdc3da80d0dafd36c78f840a393a00bdca5b04b3))
+
 # [1.2.0](https://github.com/lpm0073/automatic-grader/compare/v1.1.6...v1.2.0) (2023-11-28)
 
 
