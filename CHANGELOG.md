@@ -1,3 +1,11 @@
+# [1.1.0](https://github.com/lpm0073/automatic-grader/compare/v1.0.1...v1.1.0) (2023-11-27)
+
+
+### Features
+
+* add unit testing ([4de144e](https://github.com/lpm0073/automatic-grader/commit/4de144e9116ccd097d3d501745ca1ddd72d104e2))
+* test incorrect response file type ([666e686](https://github.com/lpm0073/automatic-grader/commit/666e6862fad8e1cbe2e4b0c6dd0eeb9493d89a79))
+
 ## [1.0.1](https://github.com/lpm0073/automatic-grader/compare/v1.0.0...v1.0.1) (2023-11-27)
 
 

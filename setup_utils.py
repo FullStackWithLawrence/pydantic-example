@@ -9,6 +9,7 @@ from typing import Dict
 
 
 HERE = os.path.abspath(os.path.dirname(__file__))
+PROJECT_ROOT = os.path.abspath(os.path.join(HERE, "grader"))
 
 # allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
@@ -16,7 +17,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 def load_version() -> Dict[str, str]:
     """Stringify the __version__ module."""
-    version_file_path = os.path.join(HERE, "__version__.py")
+    version_file_path = os.path.join(PROJECT_ROOT, "__version__.py")
     spec = importlib.util.spec_from_file_location("__version__", version_file_path)
     version_module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(version_module)
