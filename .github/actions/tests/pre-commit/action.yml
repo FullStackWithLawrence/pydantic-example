@@ -103,3 +103,6 @@ runs:
       shell: bash
       run: |
         pre-commit run --all-files --show-diff-on-failure
+      env:
+        AWS_ACCESS_KEY_ID: "dummy"
+        AWS_SECRET_ACCESS_KEY: "dummy"
