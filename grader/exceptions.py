@@ -29,7 +29,7 @@ class InvalidJSONResponseError(AGException):
 
     def __init__(self, message):
         self.message = message
-        super().__init__(self.message, penalty_pct=AGRubric.AG_INVALID_JSON_RESPONSE_PENALTY_PCT)
+        super().__init__(self.message, penalty_pct=AGRubric.INVALID_JSON_RESPONSE_PENALTY_PCT)
 
 
 class InvalidResponseStructureError(AGException):
