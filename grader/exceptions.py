@@ -24,6 +24,14 @@ class AGException(Exception):
         return self._penalty_pct
 
 
+class InvalidJSONResponseError(AGException):
+    """A custom exception for the AutomatedGrader class."""
+
+    def __init__(self, message):
+        self.message = message
+        super().__init__(self.message, penalty_pct=AGRubric.AG_INVALID_JSON_RESPONSE_PENALTY_PCT)
+
+
 class InvalidResponseStructureError(AGException):
     """A custom exception for the AutomatedGrader class."""
 
@@ -58,6 +66,7 @@ class ResponseFailedError(AGException):
 
 VALID_MESSAGE_TYPES = [
     "Success",
+    InvalidJSONResponseError.__name__,
     IncorrectResponseTypeError.__name__,
     IncorrectResponseValueError.__name__,
     InvalidResponseStructureError.__name__,

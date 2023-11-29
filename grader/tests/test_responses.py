@@ -59,8 +59,9 @@ class TestGrader:
         grade = automated_grader.grade()
         self.grade_structure(grade)
 
-        assert grade["grade"] == 70, "The grade is not 70"
-        assert grade["message_type"] == "InvalidResponseStructureError"
+        assert grade["grade"] == 50, "The grade is not 50"
+        assert grade["message_type"] == "InvalidJSONResponseError"
+        assert grade["message"] == "The assignment is not valid JSON"
 
     def test_incorrect_response_type(self):
         """Test an assignment with an incorrect response type."""
@@ -69,8 +70,9 @@ class TestGrader:
         grade = automated_grader.grade()
         self.grade_structure(grade)
 
-        assert grade["grade"] == 70, "The grade is not 70"
-        assert grade["message_type"] == "InvalidResponseStructureError"
+        assert grade["grade"] == 50, "The grade is not 50"
+        assert grade["message_type"] == "InvalidJSONResponseError"
+        assert grade["message"] == "The assignment is not valid JSON"
 
     def test_incorrect_response_statuscode(self):
         """Test an assignment with an incorrect response status code."""
@@ -81,6 +83,7 @@ class TestGrader:
 
         assert grade["message_type"] == "ResponseFailedError"
         assert grade["grade"] == 80, "The grade is not 80"
+        assert grade["message"] == "status_code must be 200. received: 403"
 
     def test_incorrect_messages(self):
         """Test an assignment with an incorrect message."""
@@ -91,6 +94,7 @@ class TestGrader:
 
         assert grade["message_type"] == "InvalidResponseStructureError"
         assert grade["grade"] == 70, "The grade is not 70"
+        assert grade["message"] == "The assignment failed pydantic validation."
 
     def test_incorrect_data_type(self):
         """Test an assignment with an incorrect data type."""
@@ -101,6 +105,7 @@ class TestGrader:
 
         assert grade["message_type"] == "InvalidResponseStructureError"
         assert grade["grade"] == 70, "The grade is not 70"
+        assert grade["message"] == "The assignment failed pydantic validation."
 
     def test_bad_message_01(self):
         """Test an assignment with an incorrect message."""
@@ -111,6 +116,7 @@ class TestGrader:
 
         assert grade["message_type"] == "InvalidResponseStructureError"
         assert grade["grade"] == 70, "The grade is not 70"
+        assert grade["message"] == "The assignment failed pydantic validation."
 
     def test_bad_message_02(self):
         """Test an assignment with an incorrect message."""
@@ -121,6 +127,7 @@ class TestGrader:
 
         assert grade["message_type"] == "InvalidResponseStructureError"
         assert grade["grade"] == 70, "The grade is not 70"
+        assert grade["message"] == "messages must contain at least 2 objects"
 
     def test_bad_message_03(self):
         """Test an assignment with an incorrect message."""
@@ -131,6 +138,7 @@ class TestGrader:
 
         assert grade["message_type"] == "InvalidResponseStructureError"
         assert grade["grade"] == 70, "The grade is not 70"
+        assert grade["message"] == "The assignment failed pydantic validation."
 
     def test_bad_message_04(self):
         """Test an assignment with an incorrect message."""
@@ -141,3 +149,4 @@ class TestGrader:
 
         assert grade["message_type"] == "InvalidResponseStructureError"
         assert grade["grade"] == 70, "The grade is not 70"
+        assert grade["message"] == "The assignment failed pydantic validation."
