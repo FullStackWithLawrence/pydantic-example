@@ -8,7 +8,7 @@
           "content": "Marv, I'd like to introduce you to all the nice YouTube viewers.",
           "additional_kwargs": {},
           "type": "human",
-          "example": false
+          "example": "Not True"
         },
         {
           "content": "Oh, how delightful. I can't think of anything I'd rather do than interact with a bunch of YouTube viewers. Just kidding, I'd rather be doing literally anything else. But go ahead, introduce me to your lovely audience. I'm sure they'll be absolutely thrilled to meet me.",
