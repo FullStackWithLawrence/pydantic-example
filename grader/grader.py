@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """Provide a class for grading a submission against an assignment.""" ""
 
+import json
+
 from pydantic import BaseModel, Field, ValidationError, field_validator, model_validator
 
 from .exceptions import (
@@ -53,22 +55,11 @@ class Grade(BaseModel):
 
 
 # flake8: noqa: E701
-class AutomatedGrader:
+class AutomatedGrader(BaseModel):
     """Grade a submission against an assignment."""
 
-    def __init__(self, assignment, potential_points=100):
-        self._assignment = assignment
-        self._potential_points = potential_points
-
-    @property
-    def assignment(self):
-        """Return the assignment."""
-        return self._assignment
-
-    @property
-    def potential_points(self):
-        """Return the potential points for the assignment."""
-        return self._potential_points
+    assignment: str = Field(..., description="The assignment to grade.")
+    potential_points: float = Field(100, description="The maximum number of points that can be awarded.", ge=0)
 
     def grade_response(self, message: AGException = None):
         """Create a grade dict from the assignment."""
@@ -81,15 +72,31 @@ class AutomatedGrader:
 
     def grade(self):
         """Grade the assignment."""
+        assignment_json: dict
+        lc_response: LCResponse
+
+        # 1.) attempt to load the assignment as JSON
         try:
-            lc_response = LCResponse(**self.assignment)
-            lc_response.validate_response()
-            return self.grade_response()
+            assignment_json = json.loads(self.assignment)
+        except json.JSONDecodeError as e:
+            try:
+                raise InvalidResponseStructureError("The assignment is not valid JSON") from e
+            except InvalidResponseStructureError as reraised_e:
+                return self.grade_response(reraised_e)
+
+        # 2.) attempt to validate the assignment using Pydantic
+        try:
+            lc_response = LCResponse(**assignment_json)
         except (ValidationError, TypeError) as e:
             try:
                 raise InvalidResponseStructureError("The assignment failed pydantic validation.") from e
             except InvalidResponseStructureError as reraised_e:
                 return self.grade_response(reraised_e)
+
+        # 3.) validate the assignment
+        try:
+            lc_response.validate_response()
+            return self.grade_response()
         except (
             ResponseFailedError,
             InvalidResponseStructureError,
