@@ -10,6 +10,7 @@ from .exceptions import (
     AGException,
     IncorrectResponseTypeError,
     IncorrectResponseValueError,
+    InvalidJSONResponseError,
     InvalidResponseStructureError,
     ResponseFailedError,
 )
@@ -72,8 +73,8 @@ class AutomatedGrader(BaseModel):
             assignment_json = json.loads(self.assignment)
         except json.JSONDecodeError as e:
             try:
-                raise InvalidResponseStructureError("The assignment is not valid JSON") from e
-            except InvalidResponseStructureError as reraised_e:
+                raise InvalidJSONResponseError("The assignment is not valid JSON") from e
+            except InvalidJSONResponseError as reraised_e:
                 return self.grade_response(reraised_e)
 
         # 2.) attempt to validate the assignment using Pydantic
