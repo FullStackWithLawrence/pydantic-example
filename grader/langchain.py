@@ -3,7 +3,7 @@
 
 from typing import List, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 
 class LCRequestMetaData(BaseModel):
@@ -30,12 +30,12 @@ class LCChatMemory(BaseModel):
 
     messages: List[LCMessage]
 
-    # @model_validator(mode="after")
-    # def validate_messages(self) -> "LCChatMemory":
-    #     """Validate that chat memory contains at least 2 dicts"""
-    #     if len(self.messages) < 2:
-    #         raise ValueError("messages must contain at least 2 objects")
-    #     return self
+    @model_validator(mode="after")
+    def validate_messages(self) -> "LCChatMemory":
+        """Validate that chat memory contains at least 2 dicts"""
+        if len(self.messages) < 2:
+            raise ValueError("messages must contain at least 2 objects")
+        return self
 
 
 class LCBody(BaseModel):
