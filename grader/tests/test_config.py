@@ -6,7 +6,7 @@ Test integrity of configuration variables.
 """
 import pytest  # pylint: disable=unused-import
 
-from ..config import AGRubric
+from ..config import AGRubric, _AGRubric
 
 
 class TestConfig:
@@ -58,3 +58,42 @@ class TestConfig:
             AGRubric.INVALID_JSON_RESPONSE_PENALTY_PCT <= 1.00
         ), "INVALID_JSON_RESPONSE_PENALTY_PCT is greater than 1.00"
         assert AGRubric.INVALID_JSON_RESPONSE_PENALTY_PCT >= 0.00, "INVALID_JSON_RESPONSE_PENALTY_PCT is less than 0.00"
+
+    def test_illegal_config_values_low(self):
+        """Test illegal configuration values (low)."""
+        with pytest.raises(ValueError):
+            _AGRubric(INCORRECT_RESPONSE_TYPE_PENALTY_PCT=-0.01)
+        with pytest.raises(ValueError):
+            _AGRubric(INCORRECT_RESPONSE_VALUE_PENALTY_PCT=-0.01)
+        with pytest.raises(ValueError):
+            _AGRubric(RESPONSE_FAILED_PENALTY_PCT=-0.01)
+        with pytest.raises(ValueError):
+            _AGRubric(INVALID_RESPONSE_STRUCTURE_PENALTY_PCT=-0.01)
+        with pytest.raises(ValueError):
+            _AGRubric(INVALID_JSON_RESPONSE_PENALTY_PCT=-0.01)
+
+    def test_illegal_config_values_high(self):
+        """Test illegal configuration values (high)."""
+        with pytest.raises(ValueError):
+            _AGRubric(INCORRECT_RESPONSE_TYPE_PENALTY_PCT=1.01)
+        with pytest.raises(ValueError):
+            _AGRubric(INCORRECT_RESPONSE_VALUE_PENALTY_PCT=1.01)
+        with pytest.raises(ValueError):
+            _AGRubric(RESPONSE_FAILED_PENALTY_PCT=1.01)
+        with pytest.raises(ValueError):
+            _AGRubric(INVALID_RESPONSE_STRUCTURE_PENALTY_PCT=1.01)
+        with pytest.raises(ValueError):
+            _AGRubric(INVALID_JSON_RESPONSE_PENALTY_PCT=1.01)
+
+    def test_illegal_config_values_bad_data_type(self):
+        """Test illegal configuration values (bad data type)."""
+        with pytest.raises(ValueError):
+            _AGRubric(INCORRECT_RESPONSE_TYPE_PENALTY_PCT="X0.01")
+        with pytest.raises(ValueError):
+            _AGRubric(INCORRECT_RESPONSE_VALUE_PENALTY_PCT="BAD DATA")
+        with pytest.raises(ValueError):
+            _AGRubric(RESPONSE_FAILED_PENALTY_PCT="TRUE")
+        with pytest.raises(ValueError):
+            _AGRubric(INVALID_RESPONSE_STRUCTURE_PENALTY_PCT="_0.01_")
+        with pytest.raises(ValueError):
+            _AGRubric(INVALID_JSON_RESPONSE_PENALTY_PCT="#0.01")
