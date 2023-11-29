@@ -223,19 +223,29 @@ class AutomatedGrader:
         be processed with the legacy code below.
         """
         try:
-            LCResponse(**self.assignment)
+            lc_response = LCResponse(**self.assignment)
+            lc_response.validate_response()
             return self.grade_response()
         except (ValidationError, TypeError):
-            pass
+            # FIX NOTE: need to map these to an applicable exception from grader.exceptions.
+            print("warning: assignment failed an un-mapped pydantic validation.")
+        except (
+            ResponseFailedError,
+            InvalidResponseStructureError,
+            ResponseFailedError,
+            IncorrectResponseValueError,
+            IncorrectResponseTypeError,
+        ) as e:
+            return self.grade_response(e)
 
         try:
             self.validate()
-        except InvalidResponseStructureError as e:
-            return self.grade_response(e)
-        except ResponseFailedError as e:
-            return self.grade_response(e)
-        except IncorrectResponseValueError as e:
-            return self.grade_response(e)
-        except IncorrectResponseTypeError as e:
+        except (
+            ResponseFailedError,
+            InvalidResponseStructureError,
+            ResponseFailedError,
+            IncorrectResponseValueError,
+            IncorrectResponseTypeError,
+        ) as e:
             return self.grade_response(e)
         return self.grade_response()
