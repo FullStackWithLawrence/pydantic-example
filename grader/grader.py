@@ -4,7 +4,7 @@
 import json
 import os
 
-from pydantic import BaseModel, Field, field_validator, model_validator
+from pydantic import BaseModel, Field, ValidationError, field_validator, model_validator
 
 from .exceptions import (
     AGException,
@@ -13,6 +13,7 @@ from .exceptions import (
     InvalidResponseStructureError,
     ResponseFailedError,
 )
+from .langchain import LCResponse
 
 
 VALID_MESSAGE_TYPES = [
@@ -38,7 +39,7 @@ class Grade(BaseModel):
     Subclasses should override the necessary methods to provide the grading logic.
     """
 
-    potential_points: float = Field(..., description="The maximum number of points that can be awarded.", gt=0)
+    potential_points: float = Field(100, description="The maximum number of points that can be awarded.", ge=0)
     grade: float = Field(..., description="The number of points awarded.", ge=0)
     message: str = Field(..., description="A result message to the student.")
     message_type: str = Field(..., description="The type of result message.")
@@ -227,4 +228,13 @@ class AutomatedGrader:
             return self.grade_response(e)
         except IncorrectResponseTypeError as e:
             return self.grade_response(e)
+
+        # this is an experimental usage of pydantic to validate the assignment
+        try:
+            LCResponse(**self.assignment)
+        except ValidationError as e:
+            error_text = str(e)
+            e = InvalidResponseStructureError(f"The assignment is not a valid LCResponse. error: {error_text}")
+            return self.grade_response(e)
+
         return self.grade_response()
