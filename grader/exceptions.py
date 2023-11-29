@@ -54,3 +54,12 @@ class ResponseFailedError(AGException):
     def __init__(self, message):
         self.message = message
         super().__init__(self.message, penalty_pct=AGRubric.RESPONSE_FAILED_PENALTY_PCT)
+
+
+VALID_MESSAGE_TYPES = [
+    "Success",
+    IncorrectResponseTypeError.__name__,
+    IncorrectResponseValueError.__name__,
+    InvalidResponseStructureError.__name__,
+    ResponseFailedError.__name__,
+]
