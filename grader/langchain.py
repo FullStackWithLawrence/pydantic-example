@@ -4,7 +4,9 @@
 from enum import Enum
 from typing import List, Optional
 
-from pydantic import BaseModel, Field, field_validator, model_validator
+from pydantic import BaseModel, Field, model_validator
+
+from .exceptions import IncorrectResponseValueError, ResponseFailedError
 
 
 class LCRequestMetaData(BaseModel):
@@ -67,10 +69,47 @@ class LCResponse(BaseModel):
     status_code: int = Field(..., alias="statusCode", ge=200, le=599)
     body: LCBody
 
-    @field_validator("status_code")
-    @classmethod
-    def status_code_is_valid(cls, status_code):
+    def validate_status_code(self):
         """Validate that the status_code == 200"""
-        if status_code != 200:
-            raise ValueError(f"status_code must be 200, got {status_code}")
-        return status_code
+        if self.status_code != 200:
+            raise ResponseFailedError(f"status_code must be 200. received: {self.status_code}")
+
+    def validate_is_base64_encoded(self):
+        """Validate that is_base64_encoded is False"""
+        if self.is_base64_encoded:
+            raise IncorrectResponseValueError("is_base64_encoded must be False")
+
+    def validate_prompt_sequence(self):
+        """Validate that the prompt sequence begins with a human message and ends with an ai message"""
+        messages = self.body.chat_memory.messages
+        prompt_1 = messages[0]
+        if prompt_1.type != MessageType.human:
+            raise IncorrectResponseValueError(
+                f"First message in prompt sequence must be of type {MessageType.human}. received: {prompt_1.type}"
+            )
+        prompt_2 = messages[1]
+        if prompt_2.type != MessageType.ai:
+            raise IncorrectResponseValueError(
+                f"Second message in prompt sequence must be of type {MessageType.ai}. received: {prompt_2.type}"
+            )
+
+    def validate_request_meta_data(self):
+        """Validate the request_meta_data"""
+        request_meta_data = self.body.request_meta_data
+        if request_meta_data.lambda_name != "lambda_langchain":
+            raise IncorrectResponseValueError(
+                f"lambda_name must be langchain. received: {request_meta_data.lambda_name}"
+            )
+        if not request_meta_data.model.startswith("gpt-3.5"):
+            raise IncorrectResponseValueError(f"model must be gpt-3.5. received: {request_meta_data.model}")
+        if not request_meta_data.end_point == "ChatCompletion":
+            raise IncorrectResponseValueError(
+                f"end_point must be ChatCompletion. received: {request_meta_data.end_point}"
+            )
+
+    def validate_response(self):
+        """Validate the response"""
+        self.validate_status_code()
+        self.validate_is_base64_encoded()
+        self.validate_prompt_sequence()
+        self.validate_request_meta_data()
