@@ -1,6 +1,6 @@
 # Canvas Automated Grader
 
-A Python automatic grader that evaluates JSON responses from the API end point https://api.openai.lawrencemcdaniel.com/examples/default-marv-sarcastic-chat. Verifies the structural integrity of the JSON response and implements a graduated Rubric based on how closely the response submitted matches this successful [test case](./grader/tests/events/correct.json).
+A Python automatic grader that evaluates JSON responses from a [LangChain](https://www.langchain.com/)-based API call. Uses Pydantic to verify the structural integrity of the JSON response and implements a graduated rubric based on how closely the submitted assignments match the specification.
 
 ## Installation
 
@@ -30,6 +30,7 @@ AG_INCORRECT_RESPONSE_TYPE_PENALTY_PCT=0.10
 AG_INCORRECT_RESPONSE_VALUE_PENALTY_PCT=0.15
 AG_RESPONSE_FAILED_PENALTY_PCT=0.20
 AG_INVALID_RESPONSE_STRUCTURE_PENALTY_PCT=0.30
+AG_INVALID_JSON_RESPONSE_PENALTY_PCT=0.50
 ```
 
 ### Expected output
@@ -109,6 +110,12 @@ This project uses a mostly automated pull request and unit testing process. See 
 pre-commit run --all-files
 ```
 
+Pull requests should pass these tests before being submitted:
+
+```console
+make test
+```
+
 ### Developer setup
 
 ```console
@@ -116,5 +123,4 @@ git clone https://github.com/lpm0073/automatic-grader.git
 cd automatic-grader
 make init
 make activate
-make test
 ```

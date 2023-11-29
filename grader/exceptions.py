@@ -31,7 +31,8 @@ class InvalidJSONResponseError(AGException):
     """A custom exception for the AutomatedGrader class."""
 
     def __init__(self, message):
-        ag_exception_model = AGExceptionModel(message=message, penalty_pct=AGRubric.INVALID_JSON_RESPONSE_PENALTY_PCT)
+        penalty_pct = AGRubric.INVALID_JSON_RESPONSE_PENALTY_PCT
+        ag_exception_model = AGExceptionModel(message=message, penalty_pct=penalty_pct)
         super().__init__(ag_exception_model)
 
 
@@ -39,9 +40,8 @@ class InvalidResponseStructureError(AGException):
     """A custom exception for the AutomatedGrader class."""
 
     def __init__(self, message):
-        ag_exception_model = AGExceptionModel(
-            message=message, penalty_pct=AGRubric.INVALID_RESPONSE_STRUCTURE_PENALTY_PCT
-        )
+        penalty_pct = AGRubric.INVALID_RESPONSE_STRUCTURE_PENALTY_PCT
+        ag_exception_model = AGExceptionModel(message=message, penalty_pct=penalty_pct)
         super().__init__(ag_exception_model)
 
 
@@ -49,9 +49,8 @@ class IncorrectResponseValueError(AGException):
     """A custom exception for the AutomatedGrader class."""
 
     def __init__(self, message):
-        ag_exception_model = AGExceptionModel(
-            message=message, penalty_pct=AGRubric.INCORRECT_RESPONSE_VALUE_PENALTY_PCT
-        )
+        penalty_pct = AGRubric.INCORRECT_RESPONSE_VALUE_PENALTY_PCT
+        ag_exception_model = AGExceptionModel(message=message, penalty_pct=penalty_pct)
         super().__init__(ag_exception_model)
 
 
@@ -59,7 +58,8 @@ class IncorrectResponseTypeError(AGException):
     """A custom exception for the AutomatedGrader class."""
 
     def __init__(self, message):
-        ag_exception_model = AGExceptionModel(message=message, penalty_pct=AGRubric.INCORRECT_RESPONSE_TYPE_PENALTY_PCT)
+        penalty_pct = AGRubric.INCORRECT_RESPONSE_TYPE_PENALTY_PCT
+        ag_exception_model = AGExceptionModel(message=message, penalty_pct=penalty_pct)
         super().__init__(ag_exception_model)
 
 
@@ -67,7 +67,8 @@ class ResponseFailedError(AGException):
     """A custom exception for the AutomatedGrader class."""
 
     def __init__(self, message):
-        ag_exception_model = AGExceptionModel(message=message, penalty_pct=AGRubric.RESPONSE_FAILED_PENALTY_PCT)
+        penalty_pct = AGRubric.RESPONSE_FAILED_PENALTY_PCT
+        ag_exception_model = AGExceptionModel(message=message, penalty_pct=penalty_pct)
         super().__init__(ag_exception_model)
 
 
