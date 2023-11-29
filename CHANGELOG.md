@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/lpm0073/automatic-grader/compare/v1.4.0...v1.5.0) (2023-11-29)
+
+
+### Features
+
+* all grading logic moved to pydantic ([b327ca7](https://github.com/lpm0073/automatic-grader/commit/b327ca70c8c5b8d22719b9848b2112ae1cdf8423))
+
 # [1.4.0](https://github.com/lpm0073/automatic-grader/compare/v1.3.1...v1.4.0) (2023-11-29)
 
 
