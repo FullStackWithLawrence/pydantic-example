@@ -4,7 +4,7 @@
 import json
 import os
 
-from pydantic import BaseModel, field_validator, model_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
 
 from .exceptions import (
     AGException,
@@ -38,14 +38,10 @@ class Grade(BaseModel):
     Subclasses should override the necessary methods to provide the grading logic.
     """
 
-    potential_points: float
-    grade: float
-    message: str
-    message_type: str
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.model_validate(self)
+    potential_points: float = Field(..., description="The maximum number of points that can be awarded.", gt=0)
+    grade: float = Field(..., description="The number of points awarded.", ge=0)
+    message: str = Field(..., description="A result message to the student.")
+    message_type: str = Field(..., description="The type of result message.")
 
     @model_validator(mode="after")
     def validate_grade(self) -> "Grade":
