@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/lpm0073/automatic-grader/compare/v1.3.0...v1.3.1) (2023-11-28)
+
+
+### Bug Fixes
+
+* [@field](https://github.com/field)_validator can only be used on class methods ([3f7824e](https://github.com/lpm0073/automatic-grader/commit/3f7824ee99d41f639b61cc569e377b411473162f))
+
 # [1.3.0](https://github.com/lpm0073/automatic-grader/compare/v1.2.0...v1.3.0) (2023-11-28)
 
 
