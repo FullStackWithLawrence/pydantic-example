@@ -217,7 +217,17 @@ class AutomatedGrader:
         return grade.model_dump()
 
     def grade(self):
-        """Grade the assignment."""
+        """Grade the assignment.
+        This is an experimental usage of pydantic to validate the assignment.
+        Only two tests should pass, the rest should raise exceptions and then
+        be processed with the legacy code below.
+        """
+        try:
+            LCResponse(**self.assignment)
+            return self.grade_response()
+        except (ValidationError, TypeError):
+            pass
+
         try:
             self.validate()
         except InvalidResponseStructureError as e:
@@ -228,13 +238,4 @@ class AutomatedGrader:
             return self.grade_response(e)
         except IncorrectResponseTypeError as e:
             return self.grade_response(e)
-
-        # this is an experimental usage of pydantic to validate the assignment
-        try:
-            LCResponse(**self.assignment)
-        except ValidationError as e:
-            error_text = str(e)
-            e = InvalidResponseStructureError(f"The assignment is not a valid LCResponse. error: {error_text}")
-            return self.grade_response(e)
-
         return self.grade_response()
