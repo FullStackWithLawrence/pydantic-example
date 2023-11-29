@@ -15,5 +15,5 @@ setup(
     package_data={
         "automated_grader": ["*.md"],
     },
-    install_requires=["pydantic>=2.0.0"],
+    install_requires=["pydantic>=2.0.0", "python-dotenv>=1.0.0"],
 )
