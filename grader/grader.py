@@ -6,6 +6,7 @@ import json
 from pydantic import BaseModel, Field, ValidationError, field_validator, model_validator
 
 from .exceptions import (
+    VALID_MESSAGE_TYPES,
     AGException,
     IncorrectResponseTypeError,
     IncorrectResponseValueError,
@@ -13,15 +14,6 @@ from .exceptions import (
     ResponseFailedError,
 )
 from .langchain import LCResponse
-
-
-VALID_MESSAGE_TYPES = [
-    "Success",
-    IncorrectResponseTypeError.__name__,
-    IncorrectResponseValueError.__name__,
-    InvalidResponseStructureError.__name__,
-    ResponseFailedError.__name__,
-]
 
 
 class Grade(BaseModel):
