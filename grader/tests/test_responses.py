@@ -81,8 +81,8 @@ class TestGrader:
         automated_grader = AutomatedGrader(assignment=assignment)
 
         grade = automated_grader.grade()
-        assert grade["message_type"] == "IncorrectResponseValueError"
-        assert grade["grade"] == 85, "The grade is not 85"
+        assert grade["message_type"] == "InvalidResponseStructureError"
+        assert grade["grade"] == 70, "The grade is not 70"
 
     def test_incorrect_data_type(self):
         """Test an assignment with an incorrect data type."""
@@ -90,8 +90,8 @@ class TestGrader:
         automated_grader = AutomatedGrader(assignment=assignment)
 
         grade = automated_grader.grade()
-        assert grade["message_type"] == "IncorrectResponseTypeError"
-        assert grade["grade"] == 90, "The grade is not 85"
+        assert grade["message_type"] == "InvalidResponseStructureError"
+        assert grade["grade"] == 70, "The grade is not 70"
 
     def test_bad_message_01(self):
         """Test an assignment with an incorrect message."""
