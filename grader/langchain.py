@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 """LangChain  integration models"""
 
+from enum import Enum
 from typing import List, Optional
 
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
 
 
 class LCRequestMetaData(BaseModel):
@@ -16,12 +17,20 @@ class LCRequestMetaData(BaseModel):
     max_tokens: int = Field(..., gt=0)
 
 
+class MessageType(Enum):
+    """LangChain message type"""
+
+    human = "human"
+    ai = "ai"
+    assistant = "assistant"
+
+
 class LCMessage(BaseModel):
     """LangChain message"""
 
     content: str
     additional_kwargs: dict
-    type: str
+    type: MessageType = Field(..., alias="type")
     example: bool
 
 
@@ -57,3 +66,11 @@ class LCResponse(BaseModel):
     is_base64_encoded: bool = Field(..., alias="isBase64Encoded")
     status_code: int = Field(..., alias="statusCode", ge=200, le=599)
     body: LCBody
+
+    @field_validator("status_code")
+    @classmethod
+    def status_code_is_valid(cls, status_code):
+        """Validate that the status_code == 200"""
+        if status_code != 200:
+            raise ValueError(f"status_code must be 200, got {status_code}")
+        return status_code
