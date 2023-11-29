@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/lpm0073/automatic-grader/compare/v1.3.1...v1.4.0) (2023-11-29)
+
+
+### Features
+
+* add Pydantic classes to validate assignment structure and business rules ([33de272](https://github.com/lpm0073/automatic-grader/commit/33de2727b96cf2b60efbdfdefae72991ad7bb3d4))
+
 ## [1.3.1](https://github.com/lpm0073/automatic-grader/compare/v1.3.0...v1.3.1) (2023-11-28)
 
 
