@@ -17,8 +17,8 @@ class LCRequestMetaData(BaseModel):
     """LangChain request meta data"""
 
     lambda_name: str = Field(..., alias="lambda")
-    model: str
-    end_point: str
+    model: str = Field(...)
+    end_point: str = Field(...)
     temperature: float = Field(..., ge=0, le=1)
     max_tokens: int = Field(..., gt=0)
 
@@ -52,10 +52,10 @@ class LCBody(BaseModel):
     chat_memory: LCChatMemory
     output_key: Optional[str] = Field(None)
     input_key: Optional[str] = Field(None)
-    return_messages: bool
-    human_prefix: str = Field("Human")
-    ai_prefix: str = Field("AI")
-    memory_key: str = Field("chat_history")
+    return_messages: Optional[bool] = Field(True)
+    human_prefix: Optional[str] = Field("Human")
+    ai_prefix: Optional[str] = Field("AI")
+    memory_key: Optional[str] = Field("chat_history")
     request_meta_data: LCRequestMetaData
 
 

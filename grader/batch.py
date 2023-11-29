@@ -21,12 +21,8 @@ def main(filepath: str = None, output_folder: str = "out", potential_points: int
     assignments = glob.glob(os.path.join(filepath, "*.json"))
     for assignment_filename in assignments:
         with open(assignment_filename, "r", encoding="utf-8") as f:
-            try:
-                assignment = json.load(f)
-            except json.JSONDecodeError:
-                print(f"warning: invalid JSON in assignment_filename: {assignment_filename}")
-                assignment = f.read()
-        grader = AutomatedGrader(assignment, potential_points=potential_points)
+            assignment = f.read()
+        grader = AutomatedGrader(assignment=assignment, potential_points=potential_points)
         grade = grader.grade()
         with open(
             os.path.join(OUTPUT_FILE_PATH, f"{os.path.basename(assignment_filename)}"), "w", encoding="utf-8"
