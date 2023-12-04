@@ -35,6 +35,8 @@ lint:
 clean:
 	rm -rf venv && rm -rf node_modules
 
+release:
+	git commit -m "feat: force a new release" --allow-empty && git push
 
 ######################
 # HELP
