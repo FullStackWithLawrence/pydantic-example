@@ -1,73 +1,63 @@
 # [1.5.0](https://github.com/lpm0073/automatic-grader/compare/v1.4.0...v1.5.0) (2023-11-29)
 
-
 ### Features
 
-* all grading logic moved to pydantic ([b327ca7](https://github.com/lpm0073/automatic-grader/commit/b327ca70c8c5b8d22719b9848b2112ae1cdf8423))
+- all grading logic moved to pydantic ([b327ca7](https://github.com/lpm0073/automatic-grader/commit/b327ca70c8c5b8d22719b9848b2112ae1cdf8423))
 
 # [1.4.0](https://github.com/lpm0073/automatic-grader/compare/v1.3.1...v1.4.0) (2023-11-29)
 
-
 ### Features
 
-* add Pydantic classes to validate assignment structure and business rules ([33de272](https://github.com/lpm0073/automatic-grader/commit/33de2727b96cf2b60efbdfdefae72991ad7bb3d4))
+- add Pydantic classes to validate assignment structure and business rules ([33de272](https://github.com/lpm0073/automatic-grader/commit/33de2727b96cf2b60efbdfdefae72991ad7bb3d4))
 
 ## [1.3.1](https://github.com/lpm0073/automatic-grader/compare/v1.3.0...v1.3.1) (2023-11-28)
 
-
 ### Bug Fixes
 
-* [@field](https://github.com/field)_validator can only be used on class methods ([3f7824e](https://github.com/lpm0073/automatic-grader/commit/3f7824ee99d41f639b61cc569e377b411473162f))
+- [@field](https://github.com/field)\_validator can only be used on class methods ([3f7824e](https://github.com/lpm0073/automatic-grader/commit/3f7824ee99d41f639b61cc569e377b411473162f))
 
 # [1.3.0](https://github.com/lpm0073/automatic-grader/compare/v1.2.0...v1.3.0) (2023-11-28)
 
-
 ### Features
 
-* add configurable rubric ([fdc3da8](https://github.com/lpm0073/automatic-grader/commit/fdc3da80d0dafd36c78f840a393a00bdca5b04b3))
+- add configurable rubric ([fdc3da8](https://github.com/lpm0073/automatic-grader/commit/fdc3da80d0dafd36c78f840a393a00bdca5b04b3))
 
 # [1.2.0](https://github.com/lpm0073/automatic-grader/compare/v1.1.6...v1.2.0) (2023-11-28)
 
-
 ### Bug Fixes
 
-* wrap __version__.py value in double quotes so that it matches black rules ([88f7214](https://github.com/lpm0073/automatic-grader/commit/88f72149c5f97d9fe3ad6129f96580ae1db9f995))
-
+- wrap **version**.py value in double quotes so that it matches black rules ([88f7214](https://github.com/lpm0073/automatic-grader/commit/88f72149c5f97d9fe3ad6129f96580ae1db9f995))
 
 ### Features
 
-* add a batch assignment grader. ([e7df088](https://github.com/lpm0073/automatic-grader/commit/e7df088c842e37f622aa4670f483448cdeb3495b))
+- add a batch assignment grader. ([e7df088](https://github.com/lpm0073/automatic-grader/commit/e7df088c842e37f622aa4670f483448cdeb3495b))
 
 ## [1.1.6](https://github.com/lpm0073/automatic-grader/compare/v1.1.5...v1.1.6) (2023-11-28)
 
-
 ### Bug Fixes
 
-* ensure that __version__.py construction matches that of dev ([af9aa7f](https://github.com/lpm0073/automatic-grader/commit/af9aa7faf5e6782cae0ec914dc820b2d0779fb11))
+- ensure that **version**.py construction matches that of dev ([af9aa7f](https://github.com/lpm0073/automatic-grader/commit/af9aa7faf5e6782cae0ec914dc820b2d0779fb11))
 
 ## [1.1.5](https://github.com/lpm0073/automatic-grader/compare/v1.1.4...v1.1.5) (2023-11-28)
 
-
 ### Bug Fixes
 
-* remove pre-commit tests from ci ([22ffa1b](https://github.com/lpm0073/automatic-grader/commit/22ffa1b1924a8da8dd725dff04496b0ede7e1f44))
+- remove pre-commit tests from ci ([22ffa1b](https://github.com/lpm0073/automatic-grader/commit/22ffa1b1924a8da8dd725dff04496b0ede7e1f44))
 
 ## [1.1.4](https://github.com/lpm0073/automatic-grader/compare/v1.1.3...v1.1.4) (2023-11-28)
 
-
 ### Bug Fixes
 
-* add dummy variables for aws credentials ([1ebf9ce](https://github.com/lpm0073/automatic-grader/commit/1ebf9cecd3577053356271d0289a335f1e9dd39c))
-* create the file, append to the file ([7f2b4d3](https://github.com/lpm0073/automatic-grader/commit/7f2b4d3e581903df65727a97a2d5b67d296a3268))
+- add dummy variables for aws credentials ([1ebf9ce](https://github.com/lpm0073/automatic-grader/commit/1ebf9cecd3577053356271d0289a335f1e9dd39c))
+- create the file, append to the file ([7f2b4d3](https://github.com/lpm0073/automatic-grader/commit/7f2b4d3e581903df65727a97a2d5b67d296a3268))
 
 ## [1.1.3](https://github.com/lpm0073/automatic-grader/compare/v1.1.2...v1.1.3) (2023-11-28)
 
-
 ### Bug Fixes
 
-* add shell ([3604be4](https://github.com/lpm0073/automatic-grader/commit/3604be4f70eb709993fe4f91d8edda87642ad005))
-* git pull before push ([fad074a](https://github.com/lpm0073/automatic-grader/commit/fad074a9b799efdf3869e98baceb724c54ce83c0))
-* run prettier with npx ([a46356e](https://github.com/lpm0073/automatic-grader/commit/a46356ef9bd3378114a1036dcc8c6eff8e016597))
+- add shell ([3604be4](https://github.com/lpm0073/automatic-grader/commit/3604be4f70eb709993fe4f91d8edda87642ad005))
+- git pull before push ([fad074a](https://github.com/lpm0073/automatic-grader/commit/fad074a9b799efdf3869e98baceb724c54ce83c0))
+- run prettier with npx ([a46356e](https://github.com/lpm0073/automatic-grader/commit/a46356ef9bd3378114a1036dcc8c6eff8e016597))
 
 ## [1.1.2](https://github.com/lpm0073/automatic-grader/compare/v1.1.1...v1.1.2) (2023-11-28)
 

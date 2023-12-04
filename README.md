@@ -1,14 +1,25 @@
-# Canvas Automated Grader
+[![Python](https://a11ybadges.com/badge?logo=python)](https://www.python.org/)
+[![Pydantic](https://a11ybadges.com/badge?text=Pydantic&badgeColor=e92063)](https://www.langchain.com/)
+[![JSON](https://a11ybadges.com/badge?logo=json)](https://www.json.org/json-en.html)
+[![FullStackWithLawrence](https://a11ybadges.com/badge?text=FullStackWithLawrence&badgeColor=orange&logo=youtube&logoColor=282828)](https://www.youtube.com/@FullStackWithLawrence)
 
-A Python automatic grader that evaluates JSON responses from a [LangChain](https://www.langchain.com/)-based API call. Uses Pydantic to verify the structural integrity of the JSON response and implements a graduated rubric based on how closely the submitted assignments match the specification.
+# Pydantic Examples
+
+[Pydantic](https://docs.pydantic.dev/latest/) is the most widely used data validation library for Python. This repo demonstrates three popular use cases for Pydantic:
+
+1. **Validation**. Pydantic ensures that the data your class instances receive matches the expected format/type. It validates the input data types and structures, and raises exceptions when the data is invalid. See the [example Python class](./grader/grader.py) in this repo.
+
+2. **Data Parsing and Serialization**. See the [JSON validator](./grader/langchain.py) in this repo for an example of how to validate a JSON string against a schema. Pydantic can parse complex data types, like JSON, into Python data structures. It can also serialize Python objects back into JSON.
+
+3. **Exception Handling**. See the [custom exceptions](./grader/exceptions.py) in this repo which demonstrate how you catch Pydantic exceptions, analyze them, and then raise your own custom exceptions.
 
 ## Installation
 
 ```console
-git clone https://github.com/lpm0073/automatic-grader.git
-cd automatic-grader
+git clone https://github.com/FullStackWithLawrence/pydantic-example.git
+cd pydantic-example
 make init
-make activate
+source venv/bin/activate
 ```
 
 ## Usage
@@ -21,7 +32,11 @@ python3 -m grader.batch -h
 python3 -m grader.batch 'path/to/homework/json/files/'
 ```
 
-## Rubric
+### About This Example
+
+The code in the repo implements an automated homework grader that I used for an online course that I taught. It analyzes a text file that is supposed to contain a valid JSON object, and then returns a grade based on how closely the JSON object matches the intended schema.
+
+### Rubric
 
 Rubric values are expressed as floats between 0 and 1.00, and can be overridden with environment variables.
 
