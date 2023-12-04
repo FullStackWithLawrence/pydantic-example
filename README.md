@@ -4,7 +4,7 @@
 [![Python](https://a11ybadges.com/badge?logo=python)](https://www.python.org/)
 [![Pydantic](https://a11ybadges.com/badge?text=Pydantic&badgeColor=e92063)](https://www.langchain.com/)
 [![JSON](https://a11ybadges.com/badge?logo=json)](https://www.json.org/json-en.html)<br>
-[![Release Notes](https://img.shields.io/github/release/FullStackWithLawrence/openai-embeddings)](https://github.com/FullStackWithLawrence/pydantic-example/releases)
+[![Release Notes](https://img.shields.io/github/release/FullStackWithLawrence/pydantic-example)](https://github.com/FullStackWithLawrence/pydantic-example/releases)
 ![GHA pushMain Status](https://img.shields.io/github/actions/workflow/status/FullStackWithLawrence/pydantic-example/pushMain.yml?branch=main)
 [![AGPL License](https://img.shields.io/github/license/overhangio/tutor.svg?style=flat-square)](https://www.gnu.org/licenses/agpl-3.0.en.html)
 [![hack.d Lawrence McDaniel](https://img.shields.io/badge/hack.d-Lawrence%20McDaniel-orange.svg)](https://lawrencemcdaniel.com)
