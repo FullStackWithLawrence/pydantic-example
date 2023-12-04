@@ -3,6 +3,10 @@
 [![JSON](https://a11ybadges.com/badge?logo=json)](https://www.json.org/json-en.html)
 [![FullStackWithLawrence](https://a11ybadges.com/badge?text=FullStackWithLawrence&badgeColor=orange&logo=youtube&logoColor=282828)](https://www.youtube.com/@FullStackWithLawrence)
 
+![GHA pushMain Status](https://img.shields.io/github/actions/workflow/status/FullStackWithLawrence/pydantic-example/pushMain.yml?branch=main)
+[![AGPL License](https://img.shields.io/github/license/overhangio/tutor.svg?style=flat-square)](https://www.gnu.org/licenses/agpl-3.0.en.html)
+[![hack.d Lawrence McDaniel](https://img.shields.io/badge/hack.d-Lawrence%20McDaniel-orange.svg)](https://lawrencemcdaniel.com)
+
 # Pydantic Examples
 
 [Pydantic](https://docs.pydantic.dev/latest/) is the most widely used data validation library for Python. This repo demonstrates three popular use cases for Pydantic:
