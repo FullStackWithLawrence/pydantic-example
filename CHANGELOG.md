@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/FullStackWithLawrence/pydantic-example/compare/v1.5.0...v1.6.0) (2023-12-04)
+
+
+### Features
+
+* force a new release ([e1caa63](https://github.com/FullStackWithLawrence/pydantic-example/commit/e1caa634d6ee318afa606e0d6dcc19cae72d6688))
+
 # [1.5.0](https://github.com/lpm0073/automatic-grader/compare/v1.4.0...v1.5.0) (2023-11-29)
 
 ### Features
