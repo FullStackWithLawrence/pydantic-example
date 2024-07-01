@@ -3,7 +3,7 @@ updates:
   - package-ecosystem: "pip"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     labels:
       - "dependencies"
       - "python"
@@ -18,7 +18,7 @@ updates:
       - "dependencies"
       - "automated pr"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     assignees:
       - "lpm0073"
     reviewers:
@@ -30,7 +30,7 @@ updates:
       - "javascript"
       - "automated pr"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     assignees:
       - "lpm0073"
     reviewers:
