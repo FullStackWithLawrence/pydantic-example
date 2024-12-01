@@ -1,6 +1,6 @@
 # dev and test
 # ------------
-pytest==8.3.3
+pytest==8.3.4
 pytest_mock==3.14.0
 
 # Code linters, formatters, and security scanners
@@ -12,11 +12,11 @@ pre-commit==4.0.1
 isort==5.13.2
 mypy==1.13.0
 pylint==3.3.1
-bandit==1.7.10
+bandit==1.8.0
 pydocstringformatter==0.7.3
 tox==4.23.2
 codespell==2.3.0
 
 # package dependencies
 python-dotenv==1.0.1
-pydantic==2.9.2
+pydantic==2.10.2
