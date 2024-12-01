@@ -19,4 +19,4 @@ codespell==2.3.0
 
 # package dependencies
 python-dotenv==1.0.1
-pydantic==2.9.2
+pydantic==2.10.2
