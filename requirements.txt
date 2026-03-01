@@ -18,5 +18,5 @@ tox==4.34.1
 codespell==2.4.1
 
 # package dependencies
-python-dotenv==1.2.1
+python-dotenv==1.2.2
 pydantic==2.12.5
