@@ -1,7 +1,7 @@
 # dev and test
 # ------------
 pytest==9.1.1
-pytest_mock==3.15.1
+pytest_mock==3.16.0
 
 # Code linters, formatters, and security scanners
 # ------------
@@ -11,7 +11,7 @@ flake8-coding==1.3.2
 pre-commit==4.6.2
 isort==9.0.1
 mypy==2.3.1
-pylint==4.0.8
+pylint==4.0.9
 bandit==1.9.4
 pydocstringformatter==1.0.0
 tox==4.64.4
